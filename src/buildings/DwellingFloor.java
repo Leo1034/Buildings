@@ -5,6 +5,8 @@ public class DwellingFloor {
     private Flat[] arrayOfFlat;
 
     public DwellingFloor(int numberOfFlatOnTheFloor){
+        if (numberOfFlatOnTheFloor <= 0)
+            throw new SpaceIndexOutOfBoundsException();
         arrayOfFlat = new Flat[numberOfFlatOnTheFloor];
         for (int i = 0; i < numberOfFlatOnTheFloor; i++){
             arrayOfFlat[i] = new Flat();
@@ -40,22 +42,30 @@ public class DwellingFloor {
     }
 
     public Flat getFlatByNumber(int flatNumber){
+        if (arrayOfFlat[flatNumber] == null)
+            throw new SpaceIndexOutOfBoundsException();
         return arrayOfFlat[flatNumber];
     }
 
     public void replaceTheFlat (int flatNumber, Flat flat){
+        if (arrayOfFlat[flatNumber] == null)
+            throw new SpaceIndexOutOfBoundsException();
         arrayOfFlat[flatNumber] = flat;
     }
-        //вроде работает
+
     public void addNewFlat(int flatNumberToBeAdded, Flat flat){
+        if (flatNumberToBeAdded < 0 || flatNumberToBeAdded > getTheNumberOfFlatOnTheFloor())
+            throw new SpaceIndexOutOfBoundsException();
         Flat[] newArray = new Flat[arrayOfFlat.length + 1];
         System.arraycopy(arrayOfFlat, 0, newArray, 0, flatNumberToBeAdded);
         newArray[flatNumberToBeAdded] = flat;
         System.arraycopy(arrayOfFlat, flatNumberToBeAdded, newArray, flatNumberToBeAdded + 1, arrayOfFlat.length - flatNumberToBeAdded);
         arrayOfFlat = newArray;
     }
-        //вроде работает
+
     public void removeFlat(int flatNumberToBeRemoved){
+        if (flatNumberToBeRemoved < 0 || flatNumberToBeRemoved > getTheNumberOfFlatOnTheFloor())
+            throw new SpaceIndexOutOfBoundsException();
         Flat[] newArray = new Flat[arrayOfFlat.length - 1];
         System.arraycopy(arrayOfFlat, 0, newArray, 0, flatNumberToBeRemoved);
         System.arraycopy(arrayOfFlat, flatNumberToBeRemoved + 1, newArray, flatNumberToBeRemoved, arrayOfFlat.length - flatNumberToBeRemoved - 1);

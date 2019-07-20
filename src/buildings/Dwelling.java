@@ -48,14 +48,20 @@ public class Dwelling {
     }
 
     public DwellingFloor getFloor(int floorNumber){
+       if (floorNumber < 0 || floorNumber > arrayOfDwellingFloor.length -1)
+           throw new FloorIndexOutOfBoundsException();
         return arrayOfDwellingFloor[floorNumber];
     }
 
     public void replaceTheFloor(int floorNumber, DwellingFloor dwellingFloor){
+       if (arrayOfDwellingFloor[floorNumber] == null)
+           throw new FloorIndexOutOfBoundsException();
         arrayOfDwellingFloor[floorNumber] = dwellingFloor;
     }
 
     public Flat getFlatByNumberInTheDwelling(int flatNumber){
+       if (flatNumber < 0 || flatNumber > getTotalNumberOfFlatInTheDwelling() - 1)
+           throw new SpaceIndexOutOfBoundsException();
        Flat requiredFlat = null;
        int number = 0;
        for(DwellingFloor dwellingFloor:arrayOfDwellingFloor){
@@ -70,6 +76,8 @@ public class Dwelling {
     }
 
     public void replaceTheFlatInTheDwelling(int flatNumber, Flat flat){
+       if (flatNumber < 0 || flatNumber > getTotalNumberOfFlatInTheDwelling() - 1)
+           throw new SpaceIndexOutOfBoundsException();
         int number = 0;
         for (DwellingFloor dwellingFloor:arrayOfDwellingFloor){
             int lenght = dwellingFloor.getArrayOfFlat().length;
@@ -83,6 +91,8 @@ public class Dwelling {
     }
 
     public void addFlatInTheDwelling(int flatNumber, Flat flat){
+       if (flatNumber < 0 || flatNumber > getTotalNumberOfFlatInTheDwelling())
+           throw new SpaceIndexOutOfBoundsException();
         int flatNumberInDwelling = 0;
         for(DwellingFloor dwellingFloor:arrayOfDwellingFloor){
             int flatNumberInTheFloor = 0;
@@ -98,6 +108,8 @@ public class Dwelling {
     }
 
     public void removeFlatInTheDwelling(int flatNumber){
+       if (flatNumber < 0 || flatNumber > getTotalNumberOfFlatInTheDwelling() -1)
+           throw new SpaceIndexOutOfBoundsException();
         int flatNumberInTheDwelling = 0;
         for (DwellingFloor dwellingFloor:arrayOfDwellingFloor){
             int flatNumberInTheFloor = 0;

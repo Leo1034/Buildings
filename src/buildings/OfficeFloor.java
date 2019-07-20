@@ -1,3 +1,5 @@
+package buildings;
+
 public class OfficeFloor {
 
     private static class Node{
@@ -8,14 +10,20 @@ public class OfficeFloor {
     private Node head = new Node();
 
     private Node getNode(int id){
+        if (id < 0)
+            throw new SpaceIndexOutOfBoundsException();
         Node n = head;
         for (int i = -1; i < id; i++){
+            if (n.next.value == null)
+                throw new SpaceIndexOutOfBoundsException();
             n = n.next;
         }
         return n;
     }
 
     private Node addNode(int id){
+        if (id < 0 || id > getNumberOfOffice())
+            throw new SpaceIndexOutOfBoundsException();
         Node n = head;
         for (int i = -1; i < id; i++){
             n = n.next;
@@ -27,6 +35,8 @@ public class OfficeFloor {
     }
 
     private void removeNode(int id){
+        if (id < 0 || id > getNumberOfOffice() - 1)
+            throw new SpaceIndexOutOfBoundsException();
         Node n = head;
         for (int i = -1; i < id; i++){
             n = n.next;
@@ -35,12 +45,16 @@ public class OfficeFloor {
     }
 
     public OfficeFloor(int number){
+        if (number <= 0)
+            throw new FloorIndexOutOfBoundsException();
         for (int i = 0; i < number; i++){
             addNode(i).value = new Office();
         }
     }
 
     public OfficeFloor(Office[] office){
+        if (office == null)
+            throw new FloorIndexOutOfBoundsException();
         int length = office.length;
         for (int i = 0; i < length; i++){
             addNode(i).value = office[i];
@@ -88,18 +102,26 @@ public class OfficeFloor {
     }
 
     public Office getOfiiceByNumber(int number){
+        if (number < 0 || number > getNumberOfOffice() - 1)
+            throw new SpaceIndexOutOfBoundsException();
         return getNode(number).value;
     }
 
     public void changeOffice(int number, Office office){
+        if (number < 0 || number > getNumberOfOffice() - 1)
+
         getNode(number).value = office;
     }
 
     public void addOffice(int number){
+        if (number < 0 || number > getNumberOfOffice())
+            throw new SpaceIndexOutOfBoundsException();
         addNode(number).value = new Office();
     }
 
     public void removeOffice(int number){
+        if (number < 0 || number > getNumberOfOffice() - 1)
+            throw new SpaceIndexOutOfBoundsException();
         removeNode(number);
     }
 

@@ -1,3 +1,7 @@
+package buildings;
+
+import buildings.Office;
+
 public class OfficeBuilding {
 
     private static class Node{
@@ -8,14 +12,19 @@ public class OfficeBuilding {
     private Node head = new Node();
 
     private Node getNode(int id){
+        if (id < 0) throw new FloorIndexOutOfBoundsException();
         Node n = head;
         for ( int i = -1; i < id; i++){
+            if (n.next.value == null)
+                throw new FloorIndexOutOfBoundsException();
             n = n.next;
         }
         return n;
     }
 
     private Node addNode(int id){
+        if (id < 0 || id > getTotalNumberOfFloor())
+            throw new FloorIndexOutOfBoundsException();
         Node n = head;
         for (int i = -1; i < id; i++){
             n = n.next;
@@ -27,6 +36,8 @@ public class OfficeBuilding {
     }
 
     private void removeNode(int id){
+        if (id < 0 || id > getTotalNumberOfFloor() - 1)
+            throw new FloorIndexOutOfBoundsException();
         Node n = head;
         for (int i = -1; i < id; i++){
             n = n.next;
@@ -35,12 +46,16 @@ public class OfficeBuilding {
     }
 
     public OfficeBuilding(int countFloor, int[] countOffices){
+        if (countFloor <= 0 || countFloor > countOffices.length - 1)
+            throw new FloorIndexOutOfBoundsException();
         for (int i = 0; i < countFloor; i++){
             addNode(i).value = new OfficeFloor(countOffices[i]);
         }
     }
 
     public OfficeBuilding(OfficeFloor[] officeFloors){
+        if (officeFloors == null)
+            throw new FloorIndexOutOfBoundsException();
         for (int i = 0; i < officeFloors.length; i++){
             addNode(i).value = officeFloors[i];
         }
@@ -99,10 +114,14 @@ public class OfficeBuilding {
     }
 
     public OfficeFloor getFloorByNumber(int id){
+        if (id < 0 || id > getTotalNumberOfFloor() - 1)
+            throw new FloorIndexOutOfBoundsException();
         return getArrayOfFloor()[id];
     }
 
     public void changeFloor(int id, OfficeFloor officeFloor){
+        if (id < 0 || id > getTotalNumberOfFloor() - 1)
+            throw new FloorIndexOutOfBoundsException();
         Node n = head;
         for (int i = -1; i < id; i++){
             n = n.next;
@@ -111,6 +130,8 @@ public class OfficeBuilding {
     }
 
     public Office getOfficeByNumber(int id){
+        if (id < 0 || id > getTotalNumberOfOffices() - 1)
+            throw new SpaceIndexOutOfBoundsException();
         Office office = null;
         int count = 0;
         for (int i = 0; i < getArrayOfFloor().length; i++){
@@ -125,6 +146,8 @@ public class OfficeBuilding {
     }
 
     public void changeOffice(int id,Office office){
+        if (id < 0 || id > getTotalNumberOfOffices() - 1)
+            throw new SpaceIndexOutOfBoundsException();
         int count = 0;
         for (int i = 0; i < getArrayOfFloor().length; i++){
             int countOnFloor = 0;
@@ -139,6 +162,8 @@ public class OfficeBuilding {
     }
 
     public void addOffice(int id, Office office){
+        if (id < 0 || id > getTotalNumberOfOffices())
+            throw new SpaceIndexOutOfBoundsException();
         int count = 0;
         for (int i = 0; i < getArrayOfFloor().length; i++){
             int countOnFloor = 0;
@@ -154,6 +179,8 @@ public class OfficeBuilding {
     }
 
     public void removeOffice(int id){
+        if (id < 0 || id > getTotalNumberOfOffices() - 1)
+            throw new SpaceIndexOutOfBoundsException();
         int count = 0;
         for (int i = 0; i < getArrayOfFloor().length; i++){
             int countOnFloor = 0;
