@@ -1,7 +1,5 @@
 package buildings;
 
-import buildings.Office;
-
 public class OfficeBuilding {
 
     private static class Node{
@@ -46,7 +44,7 @@ public class OfficeBuilding {
     }
 
     public OfficeBuilding(int countFloor, int[] countOffices){
-        if (countFloor <= 0 || countFloor > countOffices.length - 1)
+        if (countFloor <= 0 || countFloor > countOffices.length)
             throw new FloorIndexOutOfBoundsException();
         for (int i = 0; i < countFloor; i++){
             addNode(i).value = new OfficeFloor(countOffices[i]);
@@ -137,7 +135,7 @@ public class OfficeBuilding {
         for (int i = 0; i < getArrayOfFloor().length; i++){
             for (int j = 0; j < getArrayOfFloor()[i].getNumberOfOffice(); j++){
                 if (id == count){
-                    office = getArrayOfFloor()[i].getOfiiceByNumber(j);
+                    office = getArrayOfFloor()[i].getOfficeByNumber(j);
                 }
                 count++;
             }
@@ -211,7 +209,7 @@ public class OfficeBuilding {
         int count = 0;
         for (int i = 0; i < getTotalNumberOfFloor(); i++){
             for (int j = 0; j < getArrayOfFloor()[i].getNumberOfOffice(); j++){
-                arraySorted[count] = getArrayOfFloor()[i].getOfiiceByNumber(j);
+                arraySorted[count] = getArrayOfFloor()[i].getOfficeByNumber(j);
                 count++;
             }
         }

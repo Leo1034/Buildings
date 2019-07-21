@@ -64,7 +64,7 @@ public class DwellingFloor {
     }
 
     public void removeFlat(int flatNumberToBeRemoved){
-        if (flatNumberToBeRemoved < 0 || flatNumberToBeRemoved > getTheNumberOfFlatOnTheFloor())
+        if (flatNumberToBeRemoved < 0 || flatNumberToBeRemoved > getTheNumberOfFlatOnTheFloor() - 1)
             throw new SpaceIndexOutOfBoundsException();
         Flat[] newArray = new Flat[arrayOfFlat.length - 1];
         System.arraycopy(arrayOfFlat, 0, newArray, 0, flatNumberToBeRemoved);

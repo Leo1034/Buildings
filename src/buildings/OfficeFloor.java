@@ -101,7 +101,7 @@ public class OfficeFloor {
        return offices;
     }
 
-    public Office getOfiiceByNumber(int number){
+    public Office getOfficeByNumber(int number){
         if (number < 0 || number > getNumberOfOffice() - 1)
             throw new SpaceIndexOutOfBoundsException();
         return getNode(number).value;

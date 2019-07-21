@@ -5,6 +5,8 @@ public class Dwelling {
    private DwellingFloor[] arrayOfDwellingFloor;
 
    public Dwelling(int numberOfFloor, int[] arrayOfFlatOnFloors){
+       if (arrayOfFlatOnFloors.length != numberOfFloor)
+           throw new FloorIndexOutOfBoundsException();
        arrayOfDwellingFloor = new DwellingFloor[numberOfFloor];
          for (int i = 0; i < numberOfFloor; i++){
              arrayOfDwellingFloor[i] = new DwellingFloor(arrayOfFlatOnFloors[i]);
@@ -12,6 +14,8 @@ public class Dwelling {
     }
 
     public Dwelling(DwellingFloor[] arrayOfDwellingFloor){
+       if (arrayOfDwellingFloor == null)
+           throw new FloorIndexOutOfBoundsException();
        this.arrayOfDwellingFloor = arrayOfDwellingFloor;
     }
 
@@ -48,13 +52,13 @@ public class Dwelling {
     }
 
     public DwellingFloor getFloor(int floorNumber){
-       if (floorNumber < 0 || floorNumber > arrayOfDwellingFloor.length -1)
+       if (floorNumber < 0 || floorNumber > arrayOfDwellingFloor.length - 1)
            throw new FloorIndexOutOfBoundsException();
         return arrayOfDwellingFloor[floorNumber];
     }
 
     public void replaceTheFloor(int floorNumber, DwellingFloor dwellingFloor){
-       if (arrayOfDwellingFloor[floorNumber] == null)
+       if (floorNumber < 0 || floorNumber > getTheNumberOfFloors() - 1)
            throw new FloorIndexOutOfBoundsException();
         arrayOfDwellingFloor[floorNumber] = dwellingFloor;
     }
