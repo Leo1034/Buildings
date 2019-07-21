@@ -1,84 +1,84 @@
 package buildings;
 
-public class DwellingFloor {
+public class DwellingFloor implements Floor {
 
-    private Flat[] arrayOfFlat;
+    private Space[] arraySpace;
 
-    public DwellingFloor(int numberOfFlatOnTheFloor){
-        if (numberOfFlatOnTheFloor <= 0)
+    public DwellingFloor(int countSpace){
+        if (countSpace <= 0)
             throw new SpaceIndexOutOfBoundsException();
-        arrayOfFlat = new Flat[numberOfFlatOnTheFloor];
-        for (int i = 0; i < numberOfFlatOnTheFloor; i++){
-            arrayOfFlat[i] = new Flat();
+        arraySpace = new Flat[countSpace];
+        for (int i = 0; i < countSpace; i++){
+            arraySpace[i] = new Flat();
         }
     }
 
-    public DwellingFloor(Flat[] arrayOfFlatOnTheFloor){
-        arrayOfFlat = arrayOfFlatOnTheFloor;
+    public DwellingFloor(Space[] arraySpace){
+        this.arraySpace = arraySpace;
     }
 
-    public int getTheNumberOfFlatOnTheFloor(){
-        return arrayOfFlat.length;
+    public int getCountSpace(){
+        return arraySpace.length;
     }
 
-    public double getTheTotalAreaOfTheFloorFlat(){
+    public double getTotalArea(){
         double totalArea = 0;
-        for (Flat flat:arrayOfFlat){
-            totalArea += flat.getAreaOfFlat();
+        for (Space flat: arraySpace){
+            totalArea += flat.getArea();
         }
         return totalArea;
     }
 
-    public int getTheTotalNubmerOfFloorRooms(){
-        int totalNumberOfRooms = 0;
-        for(Flat flat:arrayOfFlat){
-            totalNumberOfRooms += flat.getNumberOfRooms();
+    public int getCountRooms(){
+        int totalCountRooms = 0;
+        for(Space flat: arraySpace){
+            totalCountRooms += flat.getCountRooms();
         }
-        return totalNumberOfRooms;
+        return totalCountRooms;
     }
 
-    public Flat[] getArrayOfFlat() {
-        return arrayOfFlat;
+    public Space[] getArraySpace() {
+        return arraySpace;
     }
 
-    public Flat getFlatByNumber(int flatNumber){
-        if (arrayOfFlat[flatNumber] == null)
+    public Space getSpace(int id){
+        if (arraySpace[id] == null)
             throw new SpaceIndexOutOfBoundsException();
-        return arrayOfFlat[flatNumber];
+        return arraySpace[id];
     }
 
-    public void replaceTheFlat (int flatNumber, Flat flat){
-        if (arrayOfFlat[flatNumber] == null)
+    public void changeSpace(int id, Space flat){
+        if (arraySpace[id] == null)
             throw new SpaceIndexOutOfBoundsException();
-        arrayOfFlat[flatNumber] = flat;
+        arraySpace[id] = flat;
     }
 
-    public void addNewFlat(int flatNumberToBeAdded, Flat flat){
-        if (flatNumberToBeAdded < 0 || flatNumberToBeAdded > getTheNumberOfFlatOnTheFloor())
+    public void addSpace(int id, Space flat){
+        if (id < 0 || id > getCountSpace())
             throw new SpaceIndexOutOfBoundsException();
-        Flat[] newArray = new Flat[arrayOfFlat.length + 1];
-        System.arraycopy(arrayOfFlat, 0, newArray, 0, flatNumberToBeAdded);
-        newArray[flatNumberToBeAdded] = flat;
-        System.arraycopy(arrayOfFlat, flatNumberToBeAdded, newArray, flatNumberToBeAdded + 1, arrayOfFlat.length - flatNumberToBeAdded);
-        arrayOfFlat = newArray;
+        Space[] newArray = new Flat[arraySpace.length + 1];
+        System.arraycopy(arraySpace, 0, newArray, 0, id);
+        newArray[id] = flat;
+        System.arraycopy(arraySpace, id, newArray, id + 1, arraySpace.length - id);
+        arraySpace = newArray;
     }
 
-    public void removeFlat(int flatNumberToBeRemoved){
-        if (flatNumberToBeRemoved < 0 || flatNumberToBeRemoved > getTheNumberOfFlatOnTheFloor() - 1)
+    public void removeSpace(int id){
+        if (id < 0 || id > getCountSpace() - 1)
             throw new SpaceIndexOutOfBoundsException();
-        Flat[] newArray = new Flat[arrayOfFlat.length - 1];
-        System.arraycopy(arrayOfFlat, 0, newArray, 0, flatNumberToBeRemoved);
-        System.arraycopy(arrayOfFlat, flatNumberToBeRemoved + 1, newArray, flatNumberToBeRemoved, arrayOfFlat.length - flatNumberToBeRemoved - 1);
-        arrayOfFlat = newArray;
+        Space[] newArray = new Flat[arraySpace.length - 1];
+        System.arraycopy(arraySpace, 0, newArray, 0, id);
+        System.arraycopy(arraySpace, id + 1, newArray, id, arraySpace.length - id - 1);
+        arraySpace = newArray;
     }
 
-    public Flat getBestSpace(){
-        Flat bestSpaceFlat = arrayOfFlat[0];
-        for (Flat flat:arrayOfFlat){
-            if (flat.getAreaOfFlat() > bestSpaceFlat.getAreaOfFlat()){
-                bestSpaceFlat = flat;
+    public Space getBestSpace(){
+        Space bestSpace = arraySpace[0];
+        for (Space flat: arraySpace){
+            if (flat.getArea() > bestSpace.getArea()){
+                bestSpace = flat;
             }
         }
-        return bestSpaceFlat;
+        return bestSpace;
     }
 }

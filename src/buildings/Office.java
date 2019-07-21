@@ -1,51 +1,52 @@
 package buildings;
 
-public class Office {
+public class Office implements Space {
 
-    private int DEFAULT_NUMBER_OF_ROOMS = 1;
-    private double DEFAULT_AREA_OF_OFFICE = 250;
+    private int DEFAULT_COUNT_ROOMS = 1;
+    private double DEFAULT_AREA = 250;
 
-    private int numberOfRooms;
-    private double areaOfOffice;
+    private int countRooms;
+    private double area;
 
     public Office(){
-        numberOfRooms = DEFAULT_NUMBER_OF_ROOMS;
-        areaOfOffice = DEFAULT_AREA_OF_OFFICE;
+        countRooms = DEFAULT_COUNT_ROOMS;
+        area = DEFAULT_AREA;
     }
 
-    public Office(double areaOfOffice){
-        if (areaOfOffice <= 0)
+    public Office(double area){
+        if (area <= 0)
             throw new InvalidSpaceAreaException();
-        numberOfRooms = DEFAULT_NUMBER_OF_ROOMS;
-        this.areaOfOffice = areaOfOffice;
+        countRooms = DEFAULT_COUNT_ROOMS;
+        this.area = area;
     }
 
-    public Office(int numberOfRooms, double areaOfOffice){
-        if (numberOfRooms <= 0)
+    public Office(int countRooms, double area){
+        if (countRooms <= 0)
             throw new InvalidRoomsCountException();
-        if (areaOfOffice <= 0)
+        if (area <= 0)
             throw new InvalidSpaceAreaException();
-        this.numberOfRooms = numberOfRooms;
-        this.areaOfOffice = areaOfOffice;
+        this.countRooms = countRooms;
+        this.area = area;
     }
 
-    public void changeNubmerOfRooms(int numberOfRooms){
-        if (numberOfRooms <= 0)
+    public void changeCountRooms(int countRooms){
+        if (countRooms <= 0)
             throw new InvalidRoomsCountException();
-        this.numberOfRooms = numberOfRooms;
+        this.countRooms = countRooms;
     }
 
-    public void changeAreaOfOffice(double areaOfOffice){
-        if (areaOfOffice <= 0)
+    public void changeArea(double area){
+        if (area <= 0)
             throw new InvalidSpaceAreaException();
-        this.areaOfOffice = areaOfOffice;
+        this.area = area;
     }
 
-    public int getNumberOfRooms(){
-        return numberOfRooms;
+    public int getCountRooms(){
+        return countRooms;
     }
 
-    public double getAreaOfOffice(){
-        return areaOfOffice;
+    public double getArea(){
+        return area;
     }
     }
+

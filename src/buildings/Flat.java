@@ -1,51 +1,51 @@
 package buildings;
-public class Flat {
+public class Flat implements Space {
 
 
-   private int DEFAULT_NUMBER_OF_ROOMS = 2;
-   private int DEFAULT_AREA_OF_FLAT = 50;
+   private int DEFAULT_COUNT_ROOMS = 2;
+   private double DEFAULT_AREA = 50;
 
-   private int numberOfRooms;
-   private double areaOfFlat;
+   private int countRooms;
+   private double area;
 
    public Flat(){
-       numberOfRooms = DEFAULT_NUMBER_OF_ROOMS;
-       areaOfFlat = DEFAULT_AREA_OF_FLAT;
+       countRooms = DEFAULT_COUNT_ROOMS;
+       area = DEFAULT_AREA;
    }
 
-   public Flat(int areaOfFlat){
-       if (areaOfFlat <= 0)
+   public Flat(double area){
+       if (area <= 0)
            throw new InvalidSpaceAreaException();
-       numberOfRooms = DEFAULT_NUMBER_OF_ROOMS;
-       this.areaOfFlat = areaOfFlat;
+       countRooms = DEFAULT_COUNT_ROOMS;
+       this.area = area;
    }
 
-    public Flat(int numberOfRooms, int areaOfFlat){
-       if (numberOfRooms <= 0)
+    public Flat(int countRooms, double area){
+       if (countRooms <= 0)
            throw new InvalidRoomsCountException();
-       if (areaOfFlat <= 0)
+       if (area <= 0)
            throw new InvalidSpaceAreaException();
-       this.numberOfRooms = numberOfRooms;
-       this.areaOfFlat = areaOfFlat;
+       this.countRooms = countRooms;
+       this.area = area;
    }
 
-   public void changeNumberOfRooms(int numberOfRooms){
-       if (numberOfRooms <= 0)
+   public void changeCountRooms(int countRooms){
+       if (countRooms <= 0)
            throw new InvalidRoomsCountException();
-       this.numberOfRooms = numberOfRooms;
+       this.countRooms = countRooms;
    }
 
-   public void changeAreaOfFlat(int areaOfFlat){
-       if (areaOfFlat <= 0)
+   public void changeArea(double area){
+       if (area <= 0)
            throw new InvalidSpaceAreaException();
-       this.areaOfFlat = areaOfFlat;
+       this.area = area;
    }
 
-    public int getNumberOfRooms() {
-        return numberOfRooms;
+    public int getCountRooms() {
+        return countRooms;
     }
 
-    public double getAreaOfFlat() {
-        return areaOfFlat;
+    public double getArea() {
+        return area;
     }
 }
