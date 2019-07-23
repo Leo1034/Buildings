@@ -13,7 +13,7 @@ public class DwellingFloor implements Floor {
         }
     }
 
-    public DwellingFloor(Space[] arraySpace){
+    public DwellingFloor(Space ... arraySpace){
         this.arraySpace = arraySpace;
     }
 

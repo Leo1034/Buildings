@@ -43,7 +43,7 @@ public class OfficeBuilding implements Building{
         n.next = n.next.next;
     }
 
-    public OfficeBuilding(int countFloor, int[] countOffices){
+    public OfficeBuilding(int countFloor, int ... countOffices){
         if (countFloor <= 0 || countFloor > countOffices.length)
             throw new FloorIndexOutOfBoundsException();
         for (int i = 0; i < countFloor; i++){
@@ -51,7 +51,7 @@ public class OfficeBuilding implements Building{
         }
     }
 
-    public OfficeBuilding(OfficeFloor[] officeFloors){
+    public OfficeBuilding(Floor ... officeFloors){
         if (officeFloors == null)
             throw new FloorIndexOutOfBoundsException();
         for (int i = 0; i < officeFloors.length; i++){

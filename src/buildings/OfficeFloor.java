@@ -52,7 +52,7 @@ public class OfficeFloor implements Floor {
         }
     }
 
-    public OfficeFloor(Space[] office){
+    public OfficeFloor(Space ... office){
         if (office == null)
             throw new FloorIndexOutOfBoundsException();
         int length = office.length;

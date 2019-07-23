@@ -4,7 +4,7 @@ public class Dwelling implements Building {
 
    private Floor[] arrayOfDwellingFloor;
 
-   public Dwelling(int countFloor, int[] arraySpace){
+   public Dwelling(int countFloor, int ... arraySpace){
        if (arraySpace.length != countFloor)
            throw new FloorIndexOutOfBoundsException();
        arrayOfDwellingFloor = new DwellingFloor[countFloor];
@@ -13,7 +13,7 @@ public class Dwelling implements Building {
          }
     }
 
-    public Dwelling(Floor[] arrayOfDwellingFloor){
+    public Dwelling(Floor ... arrayOfDwellingFloor){
        if (arrayOfDwellingFloor == null)
            throw new FloorIndexOutOfBoundsException();
        this.arrayOfDwellingFloor = arrayOfDwellingFloor;
