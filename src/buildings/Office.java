@@ -1,6 +1,8 @@
 package buildings;
 
-public class Office implements Space {
+import java.io.Serializable;
+
+public class Office implements Space, Serializable {
 
     private int DEFAULT_COUNT_ROOMS = 1;
     private double DEFAULT_AREA = 250;

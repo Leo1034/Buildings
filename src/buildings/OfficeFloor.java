@@ -1,6 +1,8 @@
 package buildings;
 
-public class OfficeFloor implements Floor {
+import java.io.Serializable;
+
+public class OfficeFloor implements Floor, Serializable {
 
     private static class Node{
         Space value;
@@ -25,7 +27,7 @@ public class OfficeFloor implements Floor {
         if (id < 0 || id > getCountSpace())
             throw new SpaceIndexOutOfBoundsException();
         Node n = head;
-        for (int i = -1; i < id; i++){
+        for (int i = -1; i < id - 1; i++){
             n = n.next;
         }
         Node node = new Node();

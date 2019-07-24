@@ -1,6 +1,8 @@
 package buildings;
 
-public class OfficeBuilding implements Building{
+import java.io.Serializable;
+
+public class OfficeBuilding implements Building, Serializable {
 
     private static class Node{
         Floor value;
@@ -24,14 +26,14 @@ public class OfficeBuilding implements Building{
         if (id < 0 || id > getCountFloor())
             throw new FloorIndexOutOfBoundsException();
         Node n = head;
-        for (int i = -1; i < id; i++){
+        for (int i = -1; i < id -1; i++){
             n = n.next;
         }
         Node node = new Node();
         node.next = n.next;
         n.next = node;
         return node;
-    }
+}
 
     private void removeNode(int id){
         if (id < 0 || id > getCountFloor() - 1)

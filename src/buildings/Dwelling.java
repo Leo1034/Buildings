@@ -1,6 +1,8 @@
 package buildings;
 
-public class Dwelling implements Building {
+import java.io.Serializable;
+
+public class Dwelling implements Building, Serializable {
 
    private Floor[] arrayOfDwellingFloor;
 
