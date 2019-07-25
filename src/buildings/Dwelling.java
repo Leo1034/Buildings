@@ -126,7 +126,6 @@ public class Dwelling implements Building, Serializable {
                 flatNumberInTheFloor++;
                 flatNumberInTheDwelling++;
             }
-
         }
     }
 
@@ -160,5 +159,17 @@ public class Dwelling implements Building, Serializable {
            }
        }
        return arrayFlat;
+    }
+
+    @Override
+    public String toString(){
+       String s = "Dwelling (" + getCountFloor() + ", ";
+       for (int i = 0; i < getCountFloor(); i++){
+           s += getFloor(i).toString();
+           if (i != getCountFloor() - 1)
+               s += ", ";
+           else s += ")";
+       }
+       return s;
     }
 }

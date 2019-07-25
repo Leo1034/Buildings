@@ -51,4 +51,9 @@ public class Flat implements Space, Serializable {
     public double getArea() {
         return area;
     }
+
+    @Override
+    public String toString() {
+        return "Flat (" + countRooms + ", " + area + ")";
+    }
 }

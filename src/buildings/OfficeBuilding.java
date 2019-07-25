@@ -227,5 +227,15 @@ public class OfficeBuilding implements Building, Serializable {
         return arraySorted;
     }
 
-
+    @Override
+    public String toString(){
+        String s = "OfficeBuilding (" + getCountFloor() + ", ";
+        for (int i = 0; i < getCountFloor(); i++){
+            s += getFloor(i).toString();
+            if (i != getCountFloor() - 1)
+                s += ", ";
+            else s += ")";
+        }
+        return s;
+    }
 }

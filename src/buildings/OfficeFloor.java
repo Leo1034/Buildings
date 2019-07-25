@@ -111,7 +111,6 @@ public class OfficeFloor implements Floor, Serializable {
 
     public void changeSpace(int id, Space office){
         if (id < 0 || id > getCountSpace() - 1)
-
         getNode(id).value = office;
     }
 
@@ -136,7 +135,18 @@ public class OfficeFloor implements Floor, Serializable {
                 bestSpaceOffice = n.value;
             }
         }
-
         return bestSpaceOffice;
+    }
+
+    @Override
+    public String toString(){
+        String s = "OfficeFloor (" + getCountSpace() + ", ";
+        for (int i = 0; i < getCountSpace(); i++){
+            s += getSpace(i).toString();
+            if (i != getCountSpace() - 1)
+                s += ", ";
+            else s += ")";
+        }
+        return s;
     }
 }

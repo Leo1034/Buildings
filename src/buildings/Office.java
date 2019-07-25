@@ -50,5 +50,10 @@ public class Office implements Space, Serializable {
     public double getArea(){
         return area;
     }
+
+    @Override
+    public String toString(){
+        return "Office (" + countRooms + ", " + area + ")";
+    }
     }
 

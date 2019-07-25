@@ -83,4 +83,17 @@ public class DwellingFloor implements Floor, Serializable {
         }
         return bestSpace;
     }
+
+    @Override
+    public String toString(){
+        String s = new String();
+        s = "DwellingFloor (" + getCountSpace() + ", ";
+        for (int i = 0; i < getCountSpace(); i++){
+            s += getSpace(i).toString();
+            if (i != getCountSpace() - 1)
+                s += ", ";
+            else s += ")";
+        }
+        return s;
+    }
 }
