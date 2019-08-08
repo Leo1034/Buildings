@@ -6,13 +6,13 @@ public class Dwelling implements Building, Serializable {
 
    private Floor[] arrayOfDwellingFloor;
 
-   public Dwelling(int countFloor, int ... arraySpace){
-       if (arraySpace.length != countFloor)
-           throw new FloorIndexOutOfBoundsException();
-       arrayOfDwellingFloor = new DwellingFloor[countFloor];
-         for (int i = 0; i < countFloor; i++){
-             arrayOfDwellingFloor[i] = new DwellingFloor(arraySpace[i]);
-         }
+    public Dwelling(int countFloor, int... arraySpace) {
+        if (arraySpace.length != countFloor)
+            throw new FloorIndexOutOfBoundsException();
+        arrayOfDwellingFloor = new DwellingFloor[countFloor];
+        for (int i = 0; i < countFloor; i++) {
+            arrayOfDwellingFloor[i] = new DwellingFloor(arraySpace[i]);
+        }
     }
 
     public Dwelling(Floor ... arrayOfDwellingFloor){
@@ -163,13 +163,46 @@ public class Dwelling implements Building, Serializable {
 
     @Override
     public String toString(){
-       String s = "Dwelling (" + getCountFloor() + ", ";
+        StringBuffer sb = new StringBuffer("Dwelling (" + getCountFloor() + ", ");
        for (int i = 0; i < getCountFloor(); i++){
-           s += getFloor(i).toString();
+           sb.append(getFloor(i).toString());
            if (i != getCountFloor() - 1)
-               s += ", ";
-           else s += ")";
+               sb.append(", ");
+           else sb.append(")");
        }
-       return s;
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Dwelling))
+            return false;
+        Dwelling obj = (Dwelling) object;
+        if (getCountFloor() != obj.getCountFloor())
+            return false;
+        for (int i = 0; i < getCountFloor(); i++) {
+            if (!(getFloor(i).equals(obj.getFloor(i)))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = getCountFloor();
+        for (int i = 0; i < getCountFloor(); i++) {
+            hash ^= getFloor(i).hashCode();
+        }
+        return hash;
+    }
+
+    @Override
+    public Object clone(){
+        DwellingFloor[] buffer = new DwellingFloor[getCountFloor()];
+        for (int i = 0; i < getCountFloor(); i++){
+            buffer[i] = (DwellingFloor) getFloor(i).clone();
+        }
+        return buffer;
     }
 }

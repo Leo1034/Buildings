@@ -229,13 +229,46 @@ public class OfficeBuilding implements Building, Serializable {
 
     @Override
     public String toString(){
-        String s = "OfficeBuilding (" + getCountFloor() + ", ";
+        StringBuffer sb = new StringBuffer("OfficeBuilding (" + getCountFloor() + ", ");
         for (int i = 0; i < getCountFloor(); i++){
-            s += getFloor(i).toString();
+            sb.append(getFloor(i).toString());
             if (i != getCountFloor() - 1)
-                s += ", ";
-            else s += ")";
+                sb.append(", ");
+            else sb.append(")");
         }
-        return s;
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (!(object instanceof OfficeBuilding))
+            return false;
+        OfficeBuilding obj = (OfficeBuilding) object;
+        if (getCountFloor() != obj.getCountFloor())
+            return false;
+        for (int i = 0; i < getCountFloor(); i++){
+            if (!(getFloor(i).equals(obj.getFloor(i)))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = getCountFloor();
+        for (int i = 0; i < getCountFloor(); i++){
+            hash ^= getFloor(i).hashCode();
+        }
+        return hash;
+    }
+
+    @Override
+    public Object clone(){
+        OfficeFloor[] buffer = new OfficeFloor[getCountFloor()];
+        for (int i = 0; i < getCountFloor(); i++){
+            buffer[i] = (OfficeFloor) getFloor(i).clone();
+        }
+        return buffer;
     }
 }

@@ -56,4 +56,31 @@ public class Flat implements Space, Serializable {
     public String toString() {
         return "Flat (" + countRooms + ", " + area + ")";
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Flat)) {
+            return false;
+        }
+        Flat obj = (Flat) object;
+        if (getArea() != obj.getArea())
+            return false;
+        if (getCountRooms() != obj.getCountRooms())
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+       int value1 = getCountRooms();
+       long area = (long) getArea();
+       int value2 = (int) (area >> 32);
+       int value3 = (int)(area);
+       return value1 ^ value2 ^ value3;
+    }
+
+    @Override
+    public Object clone(){
+       return new Flat(countRooms, area);
+    }
 }

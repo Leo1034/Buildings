@@ -86,14 +86,46 @@ public class DwellingFloor implements Floor, Serializable {
 
     @Override
     public String toString(){
-        String s = new String();
-        s = "DwellingFloor (" + getCountSpace() + ", ";
+        StringBuffer sb = new StringBuffer("DwellingFloor (" + getCountSpace() + ", ");
         for (int i = 0; i < getCountSpace(); i++){
-            s += getSpace(i).toString();
+            sb.append(getSpace(i).toString());
             if (i != getCountSpace() - 1)
-                s += ", ";
-            else s += ")";
+                sb.append(", ");
+            else sb.append(")");
         }
-        return s;
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (!(object instanceof DwellingFloor))
+            return false;
+        DwellingFloor obj = (DwellingFloor)object;
+        if (getCountSpace() != obj.getCountSpace())
+            return false;
+        for (int i = 0; i < getCountSpace(); i++){
+            if (!(getSpace(i).equals(obj.getSpace(i)))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = getCountSpace();
+        for (int i = 0; i < getCountSpace(); i++){
+            hash ^= getSpace(i).hashCode();
+        }
+        return hash;
+    }
+
+    @Override
+    public Object clone(){
+        Flat[] buffer = new Flat[getCountSpace()];
+        for (int i = 0; i < getCountSpace(); i++){
+            buffer[i] = (Flat) getSpace(i).clone();
+        }
+        return buffer;
     }
 }

@@ -6,5 +6,6 @@ public interface Space {
     void changeCountRooms(int countRooms);
     double getArea();
     void changeArea(double Area);
+    Object clone();
 
 }

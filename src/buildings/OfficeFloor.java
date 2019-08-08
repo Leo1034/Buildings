@@ -140,13 +140,48 @@ public class OfficeFloor implements Floor, Serializable {
 
     @Override
     public String toString(){
-        String s = "OfficeFloor (" + getCountSpace() + ", ";
+        StringBuffer sb = new StringBuffer("OfficeFloor (" + getCountSpace() + ", ");
         for (int i = 0; i < getCountSpace(); i++){
-            s += getSpace(i).toString();
+            sb.append(getSpace(i).toString());
             if (i != getCountSpace() - 1)
-                s += ", ";
-            else s += ")";
+                sb.append(", ");
+            else sb.append(")");
         }
-        return s;
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (!(object instanceof OfficeFloor))
+            return false;
+        OfficeFloor obj = (OfficeFloor) object;
+
+        if (getCountSpace() != obj.getCountSpace())
+            return false;
+
+        for (int i = 0; i < getCountSpace(); i ++){
+            if (!(getSpace(i).equals(obj.getSpace(i)))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = getCountSpace();
+        for (int i = 0; i < getCountSpace(); i++){
+            hash ^= getSpace(i).hashCode();
+        }
+        return hash;
+    }
+
+    @Override
+    public Object clone(){
+        Office[] buffer = new Office[getCountSpace()];
+        for (int i = 0; i < getCountSpace(); i++){
+            buffer[i] = (Office) getSpace(i).clone();
+        }
+        return buffer;
     }
 }

@@ -41,10 +41,10 @@ public class Main {
 //            building1 = Buildings.inputBuilding(in);
 //        } catch (IOException e) {
 //        }
-        System.out.println(flat.toString());
-        System.out.println(office.toString());
-        System.out.println(dwellingFloor.toString());
-        System.out.println(officeFloor.toString());
+//        System.out.println(flat.toString());
+//        System.out.println(office.toString());
+//        System.out.println(dwellingFloor.toString());
+//        System.out.println(officeFloor.toString());
         System.out.println(dwelling.toString());
         System.out.println(officeBuilding.toString());
     }
