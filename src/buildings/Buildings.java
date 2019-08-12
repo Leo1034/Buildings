@@ -1,5 +1,9 @@
 package buildings;
 
+import buildings.office.Office;
+import buildings.office.OfficeBuilding;
+import buildings.office.OfficeFloor;
+
 import java.io.*;
 import java.util.Scanner;
 

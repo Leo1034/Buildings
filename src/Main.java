@@ -1,7 +1,11 @@
-import buildings.*;
+import buildings.dwelling.Dwelling;
+import buildings.dwelling.DwellingFloor;
+import buildings.dwelling.Flat;
+import buildings.office.Office;
+import buildings.office.OfficeBuilding;
+import buildings.office.OfficeFloor;
 
 import java.io.*;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {

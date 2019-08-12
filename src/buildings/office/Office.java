@@ -1,4 +1,8 @@
-package buildings;
+package buildings.office;
+
+import buildings.InvalidRoomsCountException;
+import buildings.InvalidSpaceAreaException;
+import buildings.Space;
 
 import java.io.Serializable;
 

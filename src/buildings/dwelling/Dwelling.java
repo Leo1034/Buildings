@@ -1,4 +1,6 @@
-package buildings;
+package buildings.dwelling;
+
+import buildings.*;
 
 import java.io.Serializable;
 
