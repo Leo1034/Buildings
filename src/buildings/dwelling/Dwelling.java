@@ -3,6 +3,7 @@ package buildings.dwelling;
 import buildings.*;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class Dwelling implements Building, Serializable {
 
@@ -207,4 +208,32 @@ public class Dwelling implements Building, Serializable {
         }
         return buffer;
     }
+
+    class DwellingIterator implements Iterator<Floor>{
+        int pos;
+
+        public DwellingIterator(int pos){
+            this.pos = pos;
+        }
+
+        public DwellingIterator(){
+           this(0);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return pos < getCountFloor();
+        }
+
+        @Override
+        public Floor next() {
+            return getFloor(pos++);
+        }
+    }
+
+    @Override
+    public Iterator<Floor> iterator() {
+        return new DwellingIterator();
+    }
+
 }

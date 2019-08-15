@@ -1,6 +1,9 @@
 package buildings;
 
-public interface Floor {
+import java.io.Serializable;
+import java.util.Iterator;
+
+public interface Floor extends Serializable, Cloneable, Iterable<Space>, Comparable<Floor> {
 
     int getCountSpace();
     double getTotalArea();
@@ -12,5 +15,11 @@ public interface Floor {
     void removeSpace(int id);
     Space getBestSpace();
     Object clone();
+    @Override
+    String toString();
+    @Override
+    Iterator<Space> iterator();
+    @Override
+    int compareTo(Floor second);
 
 }

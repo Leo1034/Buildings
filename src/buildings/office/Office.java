@@ -6,7 +6,7 @@ import buildings.Space;
 
 import java.io.Serializable;
 
-public class Office implements Space, Serializable {
+public class Office implements Space {
 
     private int DEFAULT_COUNT_ROOMS = 1;
     private double DEFAULT_AREA = 250;
@@ -85,6 +85,15 @@ public class Office implements Space, Serializable {
     @Override
     public Object clone(){
         return new Office(countRooms, area);
+    }
+
+    @Override
+    public int compareTo(Space second){
+        if (getArea() < second.getArea())
+            return -1;
+        if (getArea() > second.getArea())
+            return 1;
+        return 0;
     }
 }
 

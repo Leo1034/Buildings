@@ -1,5 +1,7 @@
 package buildings;
 
+import java.util.Iterator;
+
 public interface Building {
 
     int getCountFloor();
@@ -15,6 +17,7 @@ public interface Building {
     void  removeSpace(int id);
     Space getBestSpace();
     Space[] getArraySorted();
+    public Iterator<Floor> iterator();
 
 
 }

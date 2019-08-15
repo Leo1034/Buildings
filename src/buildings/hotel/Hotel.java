@@ -1,5 +1,6 @@
 package buildings.hotel;
 
+import buildings.Floor;
 import buildings.Space;
 import buildings.dwelling.Dwelling;
 import buildings.dwelling.Flat;
@@ -10,7 +11,7 @@ public class Hotel extends Dwelling {
         super(countFloor, arraySpace);
     }
 
-    public Hotel(HotelFloor ... arrayOfDwellingFloor){
+    public Hotel(Floor... arrayOfDwellingFloor){
         super(arrayOfDwellingFloor);
     }
 

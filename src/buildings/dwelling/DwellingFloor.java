@@ -5,6 +5,7 @@ import buildings.Space;
 import buildings.SpaceIndexOutOfBoundsException;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class DwellingFloor implements Floor, Serializable {
 
@@ -100,6 +101,7 @@ public class DwellingFloor implements Floor, Serializable {
         return sb.toString();
     }
 
+
     @Override
     public boolean equals(Object object){
         if (!(object instanceof DwellingFloor))
@@ -132,4 +134,42 @@ public class DwellingFloor implements Floor, Serializable {
         }
         return buffer;
     }
+
+    class DwellingFloorIterator implements Iterator<Space> {
+
+        private int pos;
+
+        public DwellingFloorIterator(int pos){
+            this.pos = pos;
+        }
+
+        public DwellingFloorIterator(){
+            this(0);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return pos < getCountSpace();
+        }
+
+        @Override
+        public Space next() {
+            return getSpace(pos++);
+        }
+    }
+
+    @Override
+    public Iterator<Space> iterator() {
+        return new DwellingFloorIterator();
+    }
+
+    @Override
+    public int compareTo(Floor second){
+        if (getCountSpace() < second.getCountSpace())
+            return -1;
+        if (getCountSpace() > second.getCountSpace())
+            return 1;
+        return 0;
+    }
+
 }

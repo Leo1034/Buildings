@@ -6,10 +6,11 @@ import buildings.Space;
 import buildings.SpaceIndexOutOfBoundsException;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
-public class OfficeFloor implements Floor, Serializable {
+public class OfficeFloor implements Floor {
 
-    private static class Node{
+    private static class Node implements Serializable{
         Space value;
         Node next = this;
     }
@@ -188,5 +189,41 @@ public class OfficeFloor implements Floor, Serializable {
             buffer[i] = (Office) getSpace(i).clone();
         }
         return buffer;
+    }
+
+    class OfficeFloorIterator implements Iterator<Space> {
+        Node pos;
+
+        public OfficeFloorIterator(Node pos){
+            this.pos = pos;
+        }
+
+        public OfficeFloorIterator(){
+            this(head);
+        }
+
+        @Override
+        public boolean hasNext(){
+            return pos.next.value != null;
+        }
+
+        @Override
+        public Space next(){
+            return pos.next.value;
+        }
+    }
+
+    @Override
+    public Iterator<Space> iterator() {
+        return new OfficeFloorIterator();
+    }
+
+    @Override
+    public int compareTo(Floor second){
+        if (getCountSpace() < second.getCountSpace())
+            return -1;
+        if (getCountSpace() > second.getCountSpace())
+            return 1;
+        return 0;
     }
 }

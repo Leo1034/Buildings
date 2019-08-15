@@ -6,7 +6,7 @@ import buildings.Space;
 
 import java.io.Serializable;
 
-public class Flat implements Space, Serializable {
+public class Flat implements Space {
 
 
    private int DEFAULT_COUNT_ROOMS = 2;
@@ -86,5 +86,14 @@ public class Flat implements Space, Serializable {
     @Override
     public Object clone(){
        return new Flat(countRooms, area);
+    }
+
+    @Override
+    public int compareTo(Space second){
+        if (getArea() < second.getArea())
+            return -1;
+        if (getArea() > second.getArea())
+            return 1;
+        return 0;
     }
 }

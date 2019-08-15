@@ -3,6 +3,7 @@ package buildings.office;
 import buildings.*;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class OfficeBuilding implements Building, Serializable {
 
@@ -272,5 +273,33 @@ public class OfficeBuilding implements Building, Serializable {
             buffer[i] = (OfficeFloor) getFloor(i).clone();
         }
         return buffer;
+    }
+
+    class OfficeBuildingIterator implements Iterator<Floor>{
+
+        Node pos;
+
+        public OfficeBuildingIterator(Node pos){
+            this.pos = pos;
+        }
+
+        public  OfficeBuildingIterator(){
+            this(head);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return pos.next.value != null;
+        }
+
+        @Override
+        public Floor next() {
+            return pos.next.value;
+        }
+    }
+
+    @Override
+    public Iterator<Floor> iterator(){
+        return new OfficeBuildingIterator();
     }
 }

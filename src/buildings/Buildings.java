@@ -7,7 +7,12 @@ import buildings.office.OfficeFloor;
 import java.io.*;
 import java.util.Scanner;
 
-public class Buildings {
+public abstract class Buildings {
+    private static BuildingFactory buildingFactory = null;
+
+    public static void setBuildingFactory(BuildingFactory factory) {
+        buildingFactory = factory;
+    }
 
     public static void outputSpace(Space space, DataOutputStream out) throws IOException {
         out.writeInt(space.getCountRooms());
@@ -166,4 +171,46 @@ public class Buildings {
         }
         return new OfficeBuilding(officeFloors);
     }
+
+    public static <T extends Comparable<T>> void sortFloor(T[] data) {
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data.length - i - 1; j++) {
+                if (data[j].compareTo(data[j + 1]) > 0) {
+                    T temp;
+                    temp = data[j];
+                    data[j] = data[j + 1];
+                    data[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static Space createSpace(double area) {
+        return buildingFactory.createSpace(area);
+    }
+
+    public static Space createSpace(int roomsCount, double area) {
+        return buildingFactory.createSpace(roomsCount, area);
+    }
+
+    public static Floor createFloor(int spacesCount) {
+        return buildingFactory.createFloor(spacesCount);
+    }
+
+    public static Floor createFloor(Space[] spaces) {
+        return buildingFactory.createFloor(spaces);
+    }
+
+    public static Building createBuilding(int floorsCount, int[] spacesCounts) {
+        return buildingFactory.createBuilding(floorsCount, spacesCounts);
+    }
+
+    public static Building createBuilding(Floor[] floors) {
+        return buildingFactory.createBuilding(floors);
+    }
+
+    public static Floor synchronizedFloor(Floor floor) {
+        return new SynchronizedFloor(floor);
+    }
+
 }
